@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import { initDb } from './db/database.js';
 import { errorMiddleware } from './middleware/error.js';
+import { showsRouter } from './routes/shows.js';
 import { streamRouter } from './routes/stream.js';
 
 const app = express();
@@ -11,6 +12,7 @@ app.use(express.json());
 
 initDb();
 
+app.use('/api/shows', showsRouter);
 app.use('/api/stream', streamRouter);
 
 app.use(errorMiddleware);

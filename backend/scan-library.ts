@@ -100,10 +100,16 @@ async function main(): Promise<void> {
     showsSeen++;
     console.log(`\nShow: ${title} (${year})`);
 
-    db.prepare(`INSERT OR IGNORE INTO shows (title, year) VALUES (?, ?)`).run(title, year);
-    const show = db
+    // SELECT first — shows has no UNIQUE(title,year) constraint so INSERT OR IGNORE won't deduplicate
+    let show = db
       .prepare(`SELECT id FROM shows WHERE title = ? AND year = ?`)
-      .get(title, year) as ShowRow;
+      .get(title, year) as ShowRow | undefined;
+    if (!show) {
+      db.prepare(`INSERT INTO shows (title, year) VALUES (?, ?)`).run(title, year);
+      show = db
+        .prepare(`SELECT id FROM shows WHERE title = ? AND year = ?`)
+        .get(title, year) as ShowRow;
+    }
 
     for (const seasonEntry of readdirSync(showDir)) {
       const seasonDir = join(showDir, seasonEntry);
