@@ -17,21 +17,21 @@ import Database from 'better-sqlite3';
 
 const filePath = process.argv[2];
 if (!filePath) {
-  console.error('Usage: npm run seed -- <path-to-file>');
-  process.exit(1);
+    console.error('Usage: npm run seed -- <path-to-file>');
+    process.exit(1);
 }
 
 const absPath = resolve(filePath);
 if (!existsSync(absPath)) {
-  console.error(`File not found: ${absPath}`);
-  process.exit(1);
+    console.error(`File not found: ${absPath}`);
+    process.exit(1);
 }
 
 const ext = absPath.split('.').pop()?.toLowerCase();
 const mimeMap: Record<string, string> = {
-  mkv: 'video/x-matroska',
-  mp4: 'video/mp4',
-  webm: 'video/webm',
+    mkv: 'video/x-matroska',
+    mp4: 'video/mp4',
+    webm: 'video/webm',
 };
 const mimeType = mimeMap[ext ?? ''] ?? 'application/octet-stream';
 
@@ -67,21 +67,21 @@ db.exec(`
 `);
 
 const showResult = db
-  .prepare(`INSERT OR IGNORE INTO shows (title, year) VALUES ('Test Show', 2024)`)
-  .run();
+    .prepare(`INSERT OR IGNORE INTO shows (title, year) VALUES ('Test Show', 2024)`)
+    .run();
 
 const showId =
-  showResult.lastInsertRowid ||
-  (db.prepare(`SELECT id FROM shows WHERE title = 'Test Show'`).get() as { id: number }).id;
+    showResult.lastInsertRowid ||
+    (db.prepare(`SELECT id FROM shows WHERE title = 'Test Show'`).get() as { id: number }).id;
 
-db.prepare(`
+db.prepare(
+    `
   INSERT OR REPLACE INTO episodes (show_id, season, episode, title, file_path, mime_type)
   VALUES (?, 1, 1, 'Test Episode', ?, ?)
-`).run(showId, absPath, mimeType);
+`,
+).run(showId, absPath, mimeType);
 
-const ep = db
-  .prepare(`SELECT id FROM episodes WHERE file_path = ?`)
-  .get(absPath) as { id: number };
+const ep = db.prepare(`SELECT id FROM episodes WHERE file_path = ?`).get(absPath) as { id: number };
 
 console.log(`\nSeeded episode id=${ep.id}`);
 console.log(`File: ${absPath}\n`);

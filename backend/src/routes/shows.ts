@@ -4,5 +4,5 @@ import { getAllShows } from '../db/shows.js';
 export const showsRouter = Router();
 
 showsRouter.get('/', (_req, res) => {
-  res.json(getAllShows());
+    res.json(getAllShows());
 });

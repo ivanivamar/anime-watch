@@ -1,25 +1,25 @@
 <main class="library">
-  <h1>Library</h1>
+    <h1>Library</h1>
 
-  @if (loading()) {
-    <p class="state">Loading…</p>
-  } @else if (error()) {
-    <p class="state error">{{ error() }}</p>
-  } @else if (shows().length === 0) {
-    <p class="state">No shows yet. Run <code>npm run scan</code> to add content.</p>
-  } @else {
-    <div class="grid">
-      @for (show of shows(); track show.id) {
-        <a class="card" [routerLink]="['/show', show.id]">
-          <div class="poster">
-            <span class="initial">{{ show.title.charAt(0) }}</span>
-          </div>
-          <div class="info">
-            <p class="title">{{ show.title }}</p>
-            <p class="meta">{{ show.year ?? '—' }} · {{ show.episode_count }} ep</p>
-          </div>
-        </a>
-      }
-    </div>
-  }
+    @if (loading()) {
+        <p class="state">Loading…</p>
+    } @else if (error()) {
+        <p class="state error">{{ error() }}</p>
+    } @else if (shows().length === 0) {
+        <p class="state">No shows yet. Run <code>npm run scan</code> to add content.</p>
+    } @else {
+        <div class="grid">
+            @for (show of shows(); track show.id) {
+                <a class="card" [routerLink]="['/show', show.id]">
+                    <div class="poster">
+                        <span class="initial">{{ show.title.charAt(0) }}</span>
+                    </div>
+                    <div class="info">
+                        <p class="title">{{ show.title }}</p>
+                        <p class="meta">{{ show.year ?? '—' }} · {{ show.episode_count }} ep</p>
+                    </div>
+                </a>
+            }
+        </div>
+    }
 </main>

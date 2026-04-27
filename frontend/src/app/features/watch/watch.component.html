@@ -1,38 +1,38 @@
 <div class="watch-page">
-
-  <!-- Video is always in the DOM after AfterViewInit so ViewChild stays valid.
+    <!-- Video is always in the DOM after AfterViewInit so ViewChild stays valid.
        CSS shows/hides it based on the ready class. -->
-  <div class="player-wrap" [class.ready]="!loading() && !error()">
-    <video
-      #videoEl
-      controls
-      preload="auto"
-      (loadedmetadata)="onMetadataLoaded()"
-      (timeupdate)="onTimeUpdate()"
-      (ended)="onEnded()"
-      (error)="onVideoError()"
-    ></video>
+    <div class="player-wrap" [class.ready]="!loading() && !error()">
+        <video
+            #videoEl
+            controls
+            preload="auto"
+            (loadedmetadata)="onMetadataLoaded()"
+            (timeupdate)="onTimeUpdate()"
+            (ended)="onEnded()"
+            (error)="onVideoError()"
+        ></video>
 
-    @if (episode()) {
-      <div class="episode-info">
-        <a class="back-link" routerLink="/library">← Library</a>
-        <span class="ep-label">
-          S{{ pad(episode()!.season) }}E{{ pad(episode()!.episode) }}
-          @if (episode()!.title) { — {{ episode()!.title }} }
-        </span>
-      </div>
+        @if (episode()) {
+            <div class="episode-info">
+                <a class="back-link" routerLink="/library">← Library</a>
+                <span class="ep-label">
+                    S{{ pad(episode()!.season) }}E{{ pad(episode()!.episode) }}
+                    @if (episode()!.title) {
+                        — {{ episode()!.title }}
+                    }
+                </span>
+            </div>
+        }
+    </div>
+
+    @if (loading()) {
+        <div class="state">
+            <p>Loading…</p>
+        </div>
+    } @else if (error()) {
+        <div class="state error">
+            <p>{{ error() }}</p>
+            <a class="back-link" routerLink="/library">← Back to library</a>
+        </div>
     }
-  </div>
-
-  @if (loading()) {
-    <div class="state">
-      <p>Loading…</p>
-    </div>
-  } @else if (error()) {
-    <div class="state error">
-      <p>{{ error() }}</p>
-      <a class="back-link" routerLink="/library">← Back to library</a>
-    </div>
-  }
-
 </div>

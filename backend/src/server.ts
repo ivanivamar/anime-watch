@@ -22,5 +22,5 @@ app.use('/api/progress', progressRouter);
 app.use(errorMiddleware);
 
 app.listen(port, () => {
-  console.log(`Backend running on http://localhost:${port}`);
+    console.log(`Backend running on http://localhost:${port}`);
 });
