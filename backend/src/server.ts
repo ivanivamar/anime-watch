@@ -1,14 +1,17 @@
 import 'dotenv/config';
 import express from 'express';
+import { initDb } from './db/database.js';
 import { errorMiddleware } from './middleware/error.js';
+import { streamRouter } from './routes/stream.js';
 
 const app = express();
 const port = process.env['PORT'] ?? 3000;
 
 app.use(express.json());
 
-// Routes will be registered here as features are built
-// e.g. app.use('/api/shows', showsRouter);
+initDb();
+
+app.use('/api/stream', streamRouter);
 
 app.use(errorMiddleware);
 

@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "seed": "tsx seed-test-episode.ts",
     "build": "tsc",
     "start": "node dist/server.js"
   },
