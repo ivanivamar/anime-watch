@@ -7,4 +7,9 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/library/library.component').then(m => m.LibraryComponent),
   },
+  {
+    path: 'watch/:episodeId',
+    loadComponent: () =>
+      import('./features/watch/watch.component').then(m => m.WatchComponent),
+  },
 ];
