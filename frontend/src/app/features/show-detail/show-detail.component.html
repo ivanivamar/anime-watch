@@ -10,6 +10,12 @@
         <header class="hero">
             <div class="poster">
                 <span class="poster-initial">{{ show()!.title.charAt(0) }}</span>
+                <img
+                    class="poster-img"
+                    [src]="'/api/thumbnail/show/' + show()!.id"
+                    alt=""
+                    (error)="onPosterError($event)"
+                />
             </div>
 
             <div class="hero-info">
@@ -38,7 +44,15 @@
         <section class="episodes">
             @for (season of seasons(); track season[0]) {
                 <div class="season-block">
-                    <h2 class="season-heading">Season {{ season[0] }}</h2>
+                    <div class="season-header">
+                        <img
+                            class="season-poster"
+                            [src]="'/api/thumbnail/season/' + show()!.id + '/' + season[0]"
+                            alt=""
+                            (error)="onSeasonPosterError($event)"
+                        />
+                        <h2 class="season-heading">Season {{ season[0] }}</h2>
+                    </div>
                     @for (ep of season[1]; track ep.id) {
                         <a class="ep-row" [routerLink]="['/watch', ep.id]">
                             <div class="ep-thumb">

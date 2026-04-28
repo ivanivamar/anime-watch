@@ -14,6 +14,7 @@
 }
 
 .poster {
+    position: relative;
     flex-shrink: 0;
     width: 140px;
     aspect-ratio: 2 / 3;
@@ -23,6 +24,15 @@
     align-items: center;
     justify-content: center;
     border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.poster-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .poster-initial {
@@ -110,13 +120,29 @@
     max-width: 860px;
 }
 
+.season-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.season-poster {
+    width: 60px;
+    aspect-ratio: 2 / 3;
+    border-radius: 4px;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    object-fit: cover;
+}
+
 .season-heading {
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-muted);
-    margin: 0 0 12px;
+    margin: 0;
 }
 
 .ep-row {

@@ -28,7 +28,7 @@ export function getShowById(id: number): ShowDetail | undefined {
     const episodes = db
         .prepare(
             `
-      SELECT e.id, e.season, e.episode, e.title, e.duration_seconds, e.mime_type,
+      SELECT e.id, e.season, e.episode, e.title, e.duration_seconds, e.mime_type, e.season_poster_path,
              wp.position_seconds, wp.completed, wp.updated_at AS progress_updated_at
       FROM episodes e
       LEFT JOIN watch_progress wp ON wp.episode_id = e.id

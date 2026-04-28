@@ -12,6 +12,7 @@ export interface EpisodeWithProgress {
     position_seconds: number | null;
     completed: number | null;
     progress_updated_at: string | null;
+    season_poster_path: string | null;
 }
 
 export interface ShowDetail {

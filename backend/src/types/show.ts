@@ -16,6 +16,7 @@ export interface EpisodeRow {
     position_seconds: number | null;
     completed: number | null; // 0, 1, or null (no row)
     progress_updated_at: string | null;
+    season_poster_path: string | null;
 }
 
 export interface ShowDetail {

@@ -64,6 +64,14 @@ export class ShowDetailComponent implements OnInit {
         });
     }
 
+    onPosterError(event: Event): void {
+        (event.target as HTMLImageElement).style.display = 'none';
+    }
+
+    onSeasonPosterError(event: Event): void {
+        (event.target as HTMLImageElement).style.display = 'none';
+    }
+
     pad(n: number): string {
         return String(n).padStart(2, '0');
     }

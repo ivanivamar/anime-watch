@@ -12,6 +12,10 @@ import { LibraryService, type ContinueWatchingItem, type ShowSummary } from './l
     styleUrl: './library.component.css',
 })
 export class LibraryComponent implements OnInit {
+    onPosterError(event: Event): void {
+        (event.target as HTMLImageElement).style.display = 'none';
+    }
+
     private readonly library = inject(LibraryService);
 
     readonly shows = signal<ShowSummary[]>([]);

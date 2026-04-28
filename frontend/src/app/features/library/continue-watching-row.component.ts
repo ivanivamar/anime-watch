@@ -12,6 +12,10 @@ import type { ContinueWatchingItem } from './library.service';
 export class ContinueWatchingRowComponent {
     readonly items = input.required<ContinueWatchingItem[]>();
 
+    onThumbError(event: Event): void {
+        (event.target as HTMLImageElement).style.display = 'none';
+    }
+
     pad(n: number): string {
         return String(n).padStart(2, '0');
     }

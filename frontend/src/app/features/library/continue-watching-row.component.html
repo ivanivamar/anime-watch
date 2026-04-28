@@ -5,6 +5,12 @@
             <a class="cw-card" [routerLink]="['/watch', item.episode_id]">
                 <div class="cw-thumb">
                     <span class="cw-thumb-initial">{{ item.show_title.charAt(0) }}</span>
+                    <img
+                        class="cw-thumb-img"
+                        [src]="'/api/thumbnail/' + item.episode_id"
+                        alt=""
+                        (error)="onThumbError($event)"
+                    />
                 </div>
                 <div class="cw-info">
                     <p class="cw-show-title">{{ item.show_title }}</p>
