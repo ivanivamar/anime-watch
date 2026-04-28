@@ -1,0 +1,135 @@
+@use '../abstracts' as *;
+
+// Shared base for any image container (portrait poster, landscape thumb).
+%poster-base {
+    position: relative;
+    background: linear-gradient(
+        135deg,
+        var(--surface-variant) 0%,
+        var(--surface-alt) 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: inherit;
+
+    > img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform $dur-long-2 $ease-emphasized;
+    }
+}
+
+%poster-initial {
+    font-weight: $font-weight-bold;
+    color: var(--text-muted);
+    user-select: none;
+    letter-spacing: -0.02em;
+}
+
+// ── Library show poster (portrait, 2:3) ───────────────────────────────────
+.poster {
+    @extend %poster-base;
+    aspect-ratio: 2 / 3;
+}
+
+// Image inside any poster/thumb wrapper. The `> img` rule on %poster-base
+// covers it, but a named class lets templates target it directly without
+// caring about element nesting.
+.poster-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $dur-long-2 $ease-emphasized;
+}
+
+.poster-initial {
+    @extend %poster-initial;
+    font-size: 3rem;
+}
+
+// ── Show-detail hero portrait (140px wide) ────────────────────────────────
+// Hero variant: solid border + subtle elevation. Matches the existing markup
+// where `.poster` is reused inside `.hero`.
+.hero .poster {
+    flex-shrink: 0;
+    width: 140px;
+    border: 1px solid var(--outline);
+    border-radius: $radius-lg;
+    @include elevation(2);
+}
+
+.hero .poster-initial {
+    font-size: 3.5rem;
+}
+
+// ── Continue-watching landscape thumbnail ─────────────────────────────────
+.cw-thumb {
+    @extend %poster-base;
+    aspect-ratio: 16 / 9;
+    border-bottom: 1px solid var(--outline);
+}
+
+.cw-thumb .poster-initial {
+    font-size: 2rem;
+}
+
+// ── Season header poster ──────────────────────────────────────────────────
+.season-poster {
+    width: 60px;
+    aspect-ratio: 2 / 3;
+    border-radius: $radius-sm;
+    background: var(--surface-alt);
+    border: 1px solid var(--outline);
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+// ── Episode-row mini thumb ────────────────────────────────────────────────
+.ep-thumb {
+    position: relative;
+    flex-shrink: 0;
+    width: 64px;
+    height: 44px;
+    border-radius: $radius-sm;
+    background: var(--surface-alt);
+    border: 1px solid var(--outline);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    transition:
+        background-color $dur-short-3 $ease-standard,
+        border-color $dur-short-3 $ease-standard;
+}
+
+.ep-thumb-num {
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+// ── Watched badge ─────────────────────────────────────────────────────────
+.ep-done {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 18px;
+    height: 18px;
+    border-radius: $radius-pill;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-size: 0.6875rem;
+    font-weight: $font-weight-bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include elevation(1);
+}

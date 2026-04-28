@@ -1,0 +1,82 @@
+@use '../abstracts' as *;
+
+// ── Episode list rows ─────────────────────────────────────────────────────
+// Generic-ish "row in a list" styling. Used by the show-detail episode list
+// today; reusable for any future list-of-things UI.
+
+.ep-row {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-4;
+    padding: $space-3;
+    border-radius: $radius-md;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    transition:
+        background-color $dur-short-3 $ease-standard,
+        border-color $dur-short-3 $ease-standard,
+        transform $dur-short-3 $ease-expressive,
+        border-radius $dur-medium-2 $ease-expressive;
+
+    &:hover {
+        background: var(--surface);
+        border-color: var(--outline);
+        border-radius: $radius-lg;
+        transform: translateX(2px);
+
+        .ep-thumb {
+            background: var(--surface-variant);
+            border-color: var(--outline-strong);
+        }
+    }
+
+    &:focus-visible {
+        @include focus-ring(2px);
+    }
+
+    &:active {
+        transform: translateX(1px) scale(0.99);
+    }
+}
+
+.ep-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+}
+
+.ep-top {
+    display: flex;
+    align-items: baseline;
+    gap: $space-2;
+    min-width: 0;
+}
+
+.ep-code {
+    flex-shrink: 0;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+}
+
+.ep-title {
+    flex: 1;
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+    color: var(--text-primary);
+    @include clamp-lines(1);
+}
+
+.ep-duration {
+    flex-shrink: 0;
+    font-size: $font-size-sm;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+}

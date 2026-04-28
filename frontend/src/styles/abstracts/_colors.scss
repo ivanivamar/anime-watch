@@ -1,0 +1,42 @@
+// Raw palette. Do not reference these directly outside `_theme.scss`.
+// All UI code reads from semantic CSS custom properties (--bg, --surface…)
+// defined in `base/_theme.scss`, which map these palette values to roles.
+
+// ── Brand / accent (peach family) ─────────────────────────────────────────
+$peach-300: #f3c2a8;
+$peach-400: #f0b392;
+$peach-500: #e89f7a;
+$peach-600: #d68868;
+$peach-700: #b06d50;
+
+// ── Neutrals — dark side (warm-tinted, matches mockups 1 & 2) ─────────────
+$ink-950: #100c0a;
+$ink-900: #1a1411;
+$ink-850: #221a16;
+$ink-800: #2a201b;
+$ink-700: #3a2d27;
+$ink-600: #4d3d35;
+
+// ── Neutrals — light side (cream, matches mockup 3) ───────────────────────
+$cream-50: #fdf6f0;
+$cream-100: #f8ece0;
+$cream-200: #efddc9;
+$cream-300: #e3cbb1;
+$cream-400: #c8a98c;
+
+// ── Text ──────────────────────────────────────────────────────────────────
+$text-on-dark: #f5ebe0;
+$text-on-dark-muted: #b8a89a;
+$text-on-dark-faint: #7d6e62;
+
+$text-on-light: #2a201b;
+$text-on-light-muted: #6b5648;
+$text-on-light-faint: #998574;
+
+// ── Status ────────────────────────────────────────────────────────────────
+$error: #e07a6b;
+$success: #7fb069;
+
+// ── Pure ──────────────────────────────────────────────────────────────────
+$black: #000;
+$white: #fff;

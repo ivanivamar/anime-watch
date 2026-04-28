@@ -1,0 +1,196 @@
+@use '../abstracts' as *;
+
+// Sidebar / navigation rail. No HTML uses this yet — class names below are
+// reserved for the future <app-sidebar> component (see plan). They follow the
+// M3 navigation-rail pattern: narrow icon column with optional expanded label
+// state. Assumed markup:
+//
+// <nav class="sidebar">
+//   <button class="sidebar-toggle icon-btn">…</button>
+//   <ul class="sidebar-nav">
+//     <li><a class="sidebar-item is-active" routerLink="/library">
+//       <span class="sidebar-icon">…</span>
+//       <span class="sidebar-label">Home</span>
+//     </a></li>
+//     …
+//   </ul>
+//   <div class="sidebar-divider"></div>
+//   <ul class="sidebar-nav sidebar-nav-bottom">
+//     <li><a class="sidebar-item">…Settings</a></li>
+//   </ul>
+// </nav>
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: $space-4;
+    width: $sidebar-width;
+    padding: $space-4 $space-2;
+    background: var(--surface);
+    border-right: 1px solid var(--outline);
+    z-index: $z-sidebar;
+    // Stay in view while the routed content scrolls.
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    align-self: flex-start;
+    flex-shrink: 0;
+    transition:
+        width $dur-medium-2 $ease-emphasized,
+        background-color $dur-medium-2 $ease-standard;
+
+    &.is-expanded {
+        width: $sidebar-width-expanded;
+        padding: $space-4;
+    }
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    &-bottom {
+        margin-top: auto;
+    }
+}
+
+.sidebar-divider {
+    height: 1px;
+    background: var(--outline);
+    margin: $space-2 $space-1;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    height: 56px;
+    padding: 0 $space-4;
+    border-radius: $radius-pill;
+    color: var(--text-secondary);
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    border: 0;
+    width: 100%;
+    text-align: left;
+    transition:
+        background-color $dur-short-3 $ease-standard,
+        color $dur-short-3 $ease-standard,
+        transform $dur-short-3 $ease-expressive,
+        border-radius $dur-medium-2 $ease-expressive;
+
+    // Hover wash — same trick as .icon-btn, layered tint via ::before.
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: currentcolor;
+        opacity: 0;
+        transition: opacity $dur-short-3 $ease-standard;
+    }
+
+    &:hover {
+        color: var(--text-primary);
+        &::before {
+            opacity: 0.06;
+        }
+    }
+
+    &:active {
+        transform: scale(0.97);
+        &::before {
+            opacity: 0.12;
+        }
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+    }
+
+    // Active state — peach-tinted pill, the M3 nav-rail "selected" look.
+    &.is-active {
+        background: var(--accent-soft);
+        color: var(--accent);
+
+        &:hover::before {
+            opacity: 0;
+        }
+
+        // Animated indicator dot shrinks/grows on click for an Expressive cue.
+        .sidebar-icon {
+            transform: scale(1.05);
+            // M3 convention: selected nav items get the filled icon variant.
+            font-variation-settings: 'FILL' 1, 'wght' 500;
+        }
+    }
+
+    // Disabled / coming-soon state.
+    &:disabled,
+    &[aria-disabled='true'] {
+        opacity: 0.35;
+        cursor: not-allowed;
+
+        &:hover {
+            color: var(--text-secondary);
+            transform: none;
+        }
+        &:hover::before,
+        &:active::before {
+            opacity: 0;
+        }
+        &:active {
+            transform: none;
+        }
+    }
+}
+
+.sidebar-icon {
+    flex-shrink: 0;
+    @include square(24px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    // Material Symbols ship at 24px by default; lock it here so the glyph
+    // never overflows the 24x24 wrapper.
+    font-size: 24px;
+    line-height: 1;
+    transition:
+        transform $dur-medium-2 $ease-expressive,
+        font-variation-settings $dur-medium-2 $ease-standard;
+}
+
+.sidebar-label {
+    @include clamp-lines(1);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        opacity $dur-short-4 $ease-standard,
+        transform $dur-short-4 $ease-emphasized-decelerate;
+    transform: translateX(-4px);
+
+    .sidebar.is-expanded & {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(0);
+    }
+}
+
+// Collapsed sidebar centers icons and hides labels.
+.sidebar:not(.is-expanded) .sidebar-item {
+    justify-content: center;
+    padding: 0;
+    @include square(48px);
+    align-self: center;
+}

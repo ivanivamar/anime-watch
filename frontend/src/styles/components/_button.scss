@@ -1,0 +1,192 @@
+@use '../abstracts' as *;
+
+// ── Generic button base ───────────────────────────────────────────────────
+// Reusable for any future <button class="btn …">. Existing class-name buttons
+// (.continue-btn, .back-link) get their own rules below so HTML stays put.
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-2;
+    padding: $space-3 $space-5;
+    border-radius: $radius-pill;
+    font-family: inherit;
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    line-height: 1;
+    color: var(--text-primary);
+    background: var(--surface-alt);
+    border: 1px solid transparent;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    transition:
+        background-color $dur-short-3 $ease-standard,
+        color $dur-short-3 $ease-standard,
+        transform $dur-short-3 $ease-expressive,
+        box-shadow $dur-short-3 $ease-standard,
+        border-radius $dur-medium-2 $ease-expressive;
+
+    &:hover {
+        background: var(--surface-variant);
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: translateY(0) scale(0.97);
+        transition-duration: $dur-short-1;
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+    }
+
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        transform: none;
+    }
+}
+
+.btn-primary {
+    @extend .btn;
+    background: var(--accent);
+    color: var(--on-accent);
+    @include elevation(1);
+
+    &:hover {
+        background: var(--accent-hover);
+        @include elevation(2);
+        // Subtle shape morph on hover — Expressive cue.
+        border-radius: $radius-lg;
+    }
+
+    &:active {
+        background: var(--accent-pressed);
+    }
+}
+
+.btn-ghost {
+    @extend .btn;
+    background: transparent;
+    color: var(--text-primary);
+
+    &:hover {
+        background: var(--accent-soft);
+        color: var(--accent);
+    }
+}
+
+// ── Icon button (circular, single icon) ───────────────────────────────────
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    @include square(40px);
+    border-radius: $radius-pill;
+    color: var(--text-secondary);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition:
+        background-color $dur-short-3 $ease-standard,
+        color $dur-short-3 $ease-standard,
+        transform $dur-short-3 $ease-expressive;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: currentcolor;
+        opacity: 0;
+        transition: opacity $dur-short-3 $ease-standard;
+    }
+
+    &:hover {
+        color: var(--text-primary);
+        &::before {
+            opacity: 0.08;
+        }
+    }
+
+    &:active {
+        transform: scale(0.92);
+        &::before {
+            opacity: 0.16;
+        }
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+    }
+
+    &.is-active {
+        color: var(--on-accent);
+        background: var(--accent);
+
+        &:hover::before {
+            opacity: 0.12;
+        }
+    }
+}
+
+// ── Existing in-template links treated as buttons ─────────────────────────
+
+// Subtle text link used for "← Library" navigation.
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-1;
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+    color: var(--text-secondary);
+    text-decoration: none;
+    align-self: flex-start;
+    padding: $space-2 $space-3;
+    margin-left: -#{$space-3};
+    border-radius: $radius-pill;
+    transition:
+        background-color $dur-short-3 $ease-standard,
+        color $dur-short-3 $ease-standard,
+        transform $dur-short-3 $ease-expressive;
+
+    &:hover {
+        color: var(--text-primary);
+        background: var(--surface-alt);
+        transform: translateX(-2px);
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+    }
+}
+
+// Small accent-tinted text link (used in error states).
+.link {
+    color: var(--accent);
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+    text-decoration: none;
+    transition: color $dur-short-3 $ease-standard;
+
+    &:hover {
+        color: var(--accent-hover);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+        border-radius: $radius-xs;
+    }
+}
+
+.continue-title {
+    font-weight: $font-weight-regular;
+    @include clamp-lines(1);
+    max-width: 240px;
+}

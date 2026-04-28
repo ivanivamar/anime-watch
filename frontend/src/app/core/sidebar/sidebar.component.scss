@@ -1,0 +1,15 @@
+// Layout only. Visual styling for .sidebar, .sidebar-item, .sidebar-icon,
+// etc. lives in src/styles/components/_sidebar.scss.
+
+:host {
+    // Sidebar lives in the root grid; the partial sets its width and bg.
+    display: contents;
+}
+
+// Reset list defaults — already done in _reset.scss but kept tight here so
+// the sidebar nav layouts stay obvious when reading this file.
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}

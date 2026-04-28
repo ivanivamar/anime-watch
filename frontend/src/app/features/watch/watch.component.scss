@@ -1,0 +1,50 @@
+// Layout only. Visual styling for .back-link, .state, etc. lives in the
+// global SCSS partials (see src/styles/).
+
+.watch-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #000;
+}
+
+// Hidden while loading/erroring; shown once `ready` class is applied.
+.player-wrap {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+
+    &.ready {
+        display: flex;
+    }
+}
+
+video {
+    width: 100%;
+    max-height: calc(100vh - 48px);
+    background: #000;
+}
+
+.episode-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 16px;
+    background: var(--surface);
+    border-top: 1px solid var(--outline);
+}
+
+.ep-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+// Watch-page state overlays cover the whole viewport on top of the dark bg.
+.state {
+    flex: 1;
+    background: var(--bg);
+    min-height: 100vh;
+}

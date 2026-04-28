@@ -1,0 +1,74 @@
+@use '../abstracts/colors' as *;
+
+// All colour roles live as CSS custom properties so:
+//   1. light/dark themes are an attribute swap, no rebuild needed
+//   2. accent can be runtime-overridden by `documentElement.style.setProperty('--accent', …)`
+//
+// Dark theme is the default (defined on :root). Adding `data-theme="light"`
+// to <html> swaps the role assignments. `data-theme="dark"` is provided too
+// so a future toggle can be explicit either way.
+
+:root {
+    // ── Brand (override at runtime to change the accent color) ────────────
+    --accent: #{$peach-400};
+    --accent-hover: #{$peach-300};
+    --accent-pressed: #{$peach-500};
+    --on-accent: #{$ink-900};
+    --accent-soft: #{rgba($peach-400, 0.16)};
+
+    // ── Surfaces (dark by default, matches mockups 1 & 2) ─────────────────
+    --bg: #{$ink-900};
+    --surface: #{$ink-850};
+    --surface-alt: #{$ink-800};
+    --surface-variant: #{$ink-700};
+    --on-surface-overlay: #{rgba($white, 0.04)};
+
+    --outline: #{$ink-700};
+    --outline-strong: #{$ink-600};
+
+    // ── Text ──────────────────────────────────────────────────────────────
+    --text-primary: #{$text-on-dark};
+    --text-secondary: #{$text-on-dark-muted};
+    --text-muted: #{$text-on-dark-faint};
+
+    // ── Status ────────────────────────────────────────────────────────────
+    --color-error: #{$error};
+    --color-success: #{$success};
+
+    // ── Elevation ─────────────────────────────────────────────────────────
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.18), 0 1px 3px 1px rgba(0, 0, 0, 0.12);
+    --shadow-2: 0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 6px 2px rgba(0, 0, 0, 0.14);
+    --shadow-3: 0 4px 8px 3px rgba(0, 0, 0, 0.16), 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+// Explicit dark — same as default; lets the toggle round-trip cleanly.
+[data-theme='dark'] {
+    color-scheme: dark;
+}
+
+[data-theme='light'] {
+    color-scheme: light;
+
+    --accent: #{$peach-500};
+    --accent-hover: #{$peach-400};
+    --accent-pressed: #{$peach-600};
+    --on-accent: #{$white};
+    --accent-soft: #{rgba($peach-500, 0.18)};
+
+    --bg: #{$cream-50};
+    --surface: #{$white};
+    --surface-alt: #{$cream-100};
+    --surface-variant: #{$cream-200};
+    --on-surface-overlay: #{rgba($ink-900, 0.04)};
+
+    --outline: #{$cream-200};
+    --outline-strong: #{$cream-300};
+
+    --text-primary: #{$text-on-light};
+    --text-secondary: #{$text-on-light-muted};
+    --text-muted: #{$text-on-light-faint};
+
+    --shadow-1: 0 1px 2px rgba(40, 30, 25, 0.06), 0 1px 3px rgba(40, 30, 25, 0.08);
+    --shadow-2: 0 2px 6px rgba(40, 30, 25, 0.08), 0 4px 12px rgba(40, 30, 25, 0.06);
+    --shadow-3: 0 4px 12px rgba(40, 30, 25, 0.1), 0 8px 24px rgba(40, 30, 25, 0.08);
+}

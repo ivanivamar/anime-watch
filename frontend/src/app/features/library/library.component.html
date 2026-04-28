@@ -15,7 +15,7 @@
             @for (show of shows(); track show.id) {
                 <a class="card" [routerLink]="['/show', show.id]">
                     <div class="poster">
-                        <span class="initial">{{ show.title.charAt(0) }}</span>
+                        <span class="poster-initial">{{ show.title.charAt(0) }}</span>
                         <img
                             class="poster-img"
                             [src]="'/api/thumbnail/show/' + show.id"

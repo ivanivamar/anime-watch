@@ -1,0 +1,36 @@
+// Material Design 3 motion tokens. Use `var(--ease-…)` and `var(--dur-…)`
+// in transitions so a future motion-reduce setting can swap them in one place.
+//
+// Not all M3 motion belongs in CSS — page-level orchestration, stagger reveals,
+// and FLIP-style transitions will use GSAP. The tokens below cover what
+// transitions can express on their own.
+
+// Durations (ms, M3 spec)
+$dur-short-1: 50ms;
+$dur-short-2: 100ms;
+$dur-short-3: 150ms;
+$dur-short-4: 200ms;
+$dur-medium-1: 250ms;
+$dur-medium-2: 300ms;
+$dur-medium-3: 350ms;
+$dur-medium-4: 400ms;
+$dur-long-1: 450ms;
+$dur-long-2: 500ms;
+$dur-long-3: 550ms;
+$dur-long-4: 600ms;
+$dur-extra-long-1: 700ms;
+$dur-extra-long-2: 800ms;
+
+// Easings
+$ease-linear: linear;
+$ease-standard: cubic-bezier(0.2, 0, 0, 1);
+$ease-standard-decelerate: cubic-bezier(0, 0, 0, 1);
+$ease-standard-accelerate: cubic-bezier(0.3, 0, 1, 1);
+$ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+$ease-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+$ease-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+
+// M3 Expressive — springy, slight overshoot. CSS can only approximate spring
+// physics; for true spring motion use GSAP.
+$ease-expressive: cubic-bezier(0.34, 1.4, 0.5, 1);
+$ease-expressive-soft: cubic-bezier(0.5, 1.2, 0.4, 1);

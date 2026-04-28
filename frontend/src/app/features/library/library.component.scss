@@ -1,0 +1,18 @@
+// Layout only. Visual styling for .card, .poster, .state, etc. lives in
+// the global SCSS partials (see src/styles/components/).
+
+.library {
+    padding: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+h1 {
+    margin-bottom: 24px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+}

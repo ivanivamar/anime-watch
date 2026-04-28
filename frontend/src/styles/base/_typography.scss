@@ -1,0 +1,65 @@
+@use '../abstracts' as *;
+
+body {
+    font-family: $font-stack-sans;
+    font-size: $font-size-base;
+    line-height: $line-height-normal;
+    color: var(--text-primary);
+    background: var(--bg);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition:
+        background-color $dur-medium-2 $ease-standard,
+        color $dur-medium-2 $ease-standard;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+}
+
+h1 {
+    font-size: $font-size-2xl;
+}
+h2 {
+    font-size: $font-size-xl;
+}
+h3 {
+    font-size: $font-size-lg;
+}
+
+p {
+    color: var(--text-secondary);
+}
+
+code {
+    font-family: $font-stack-mono;
+    background: var(--surface-alt);
+    color: var(--text-primary);
+    padding: 2px 6px;
+    border-radius: $radius-xs;
+    font-size: 0.875em;
+}
+
+::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+}
+
+// Small-caps section label (used for "Continue Watching", season headings,
+// and any future row/section title that should sit above content unobtrusively).
+.section-label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}

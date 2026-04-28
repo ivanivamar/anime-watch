@@ -11,7 +11,7 @@ import {
     standalone: true,
     imports: [RouterLink],
     templateUrl: './show-detail.component.html',
-    styleUrl: './show-detail.component.css',
+    styleUrl: './show-detail.component.scss',
 })
 export class ShowDetailComponent implements OnInit {
     private readonly route = inject(ActivatedRoute);

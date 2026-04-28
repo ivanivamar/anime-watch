@@ -18,7 +18,7 @@ import { WatchService, type EpisodeDetail } from './watch.service';
     standalone: true,
     imports: [RouterLink],
     templateUrl: './watch.component.html',
-    styleUrl: './watch.component.css',
+    styleUrl: './watch.component.scss',
 })
 export class WatchComponent implements AfterViewInit, OnDestroy {
     private readonly route = inject(ActivatedRoute);

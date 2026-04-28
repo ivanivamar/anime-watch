@@ -1,0 +1,10 @@
+// Order matters here — buttons / cards declare placeholder selectors that
+// other partials extend. Keep utilities late so component-specific overrides
+// land last.
+@forward 'button';
+@forward 'card';
+@forward 'poster';
+@forward 'progress-bar';
+@forward 'list';
+@forward 'state';
+@forward 'sidebar';

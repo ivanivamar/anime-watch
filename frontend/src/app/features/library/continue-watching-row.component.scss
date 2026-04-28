@@ -1,0 +1,17 @@
+// Layout only. Visual styling for .cw-card, .cw-thumb, .cw-heading, etc.
+// lives in the global SCSS partials (see src/styles/).
+
+.cw-row {
+    margin-bottom: 32px;
+}
+
+.cw-row .section-label {
+    margin: 0 0 12px;
+}
+
+.cw-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}

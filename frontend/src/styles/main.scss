@@ -1,0 +1,15 @@
+// Global stylesheet entry. Loaded once via angular.json and provides every
+// base-element style (buttons, cards, sidebar, posters, progress bars, list
+// rows, states). Component .scss files keep only layout — anything visual
+// belongs in the partials below.
+//
+// Order is intentional:
+//   abstracts  → tokens / mixins (no output)
+//   base       → reset + typography + theme variables (must come before any
+//                rule that reads --bg, --text-primary, etc.)
+//   components → element styling (consumes tokens + theme)
+@use 'abstracts';
+@use 'base';
+@use 'components';
+
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');

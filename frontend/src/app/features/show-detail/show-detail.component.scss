@@ -1,0 +1,66 @@
+// Layout only. Visual styling for .poster, .ep-row, .continue-btn, .back-link,
+// .season-poster, .ep-progress-track, .state, etc. lives in the global SCSS
+// partials (see src/styles/).
+
+.show-detail {
+    min-height: 100vh;
+}
+
+// ── Hero ──────────────────────────────────────────────────────────────────
+.hero {
+    display: flex;
+    gap: 32px;
+    padding: 32px 24px;
+    border-bottom: 1px solid var(--outline);
+    background: linear-gradient(to bottom, var(--surface) 0%, var(--bg) 100%);
+}
+
+.hero-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    flex: 1;
+}
+
+.show-title {
+    margin: 4px 0 0;
+}
+
+.show-meta {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.show-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 4px 0 0;
+    max-width: 600px;
+}
+
+// ── Episode list ──────────────────────────────────────────────────────────
+.episodes {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 860px;
+}
+
+.season-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.season-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.season-header .section-label {
+    margin: 0;
+}

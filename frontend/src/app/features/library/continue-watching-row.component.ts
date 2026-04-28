@@ -7,7 +7,7 @@ import type { ContinueWatchingItem } from './library.service';
     standalone: true,
     imports: [RouterLink],
     templateUrl: './continue-watching-row.component.html',
-    styleUrl: './continue-watching-row.component.css',
+    styleUrl: './continue-watching-row.component.scss',
 })
 export class ContinueWatchingRowComponent {
     readonly items = input.required<ContinueWatchingItem[]>();

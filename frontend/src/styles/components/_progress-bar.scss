@@ -1,0 +1,33 @@
+@use '../abstracts' as *;
+
+%progress-track {
+    height: 4px;
+    border-radius: $radius-pill;
+    background: var(--outline);
+    overflow: hidden;
+    position: relative;
+}
+
+%progress-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: var(--accent);
+    // The width is set inline by the component; transition makes incremental
+    // updates feel responsive but not laggy.
+    transition: width $dur-medium-2 $ease-emphasized-decelerate;
+}
+
+.cw-progress-track,
+.ep-progress-track {
+    @extend %progress-track;
+}
+
+.cw-progress-fill,
+.ep-progress-fill {
+    @extend %progress-fill;
+}
+
+// Slightly thinner track for the inline episode list.
+.ep-progress-track {
+    height: 3px;
+}

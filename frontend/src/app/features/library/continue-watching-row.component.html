@@ -1,12 +1,12 @@
 <section class="cw-row">
-    <h2 class="cw-heading">Continue Watching</h2>
+    <h2 class="section-label">Continue Watching</h2>
     <div class="cw-scroll">
         @for (item of items(); track item.episode_id) {
             <a class="cw-card" [routerLink]="['/watch', item.episode_id]">
                 <div class="cw-thumb">
-                    <span class="cw-thumb-initial">{{ item.show_title.charAt(0) }}</span>
+                    <span class="poster-initial">{{ item.show_title.charAt(0) }}</span>
                     <img
-                        class="cw-thumb-img"
+                        class="poster-img"
                         [src]="'/api/thumbnail/' + item.episode_id"
                         alt=""
                         (error)="onThumbError($event)"

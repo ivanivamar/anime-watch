@@ -1,0 +1,123 @@
+@use '../abstracts' as *;
+
+// ── Show card (portrait) — used in the library grid ───────────────────────
+.card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    background: var(--surface);
+    border-radius: $radius-lg;
+    overflow: hidden;
+    border: 1px solid transparent;
+    @include elevation(0);
+    transition:
+        transform $dur-medium-1 $ease-expressive,
+        background-color $dur-short-3 $ease-standard,
+        border-color $dur-short-3 $ease-standard,
+        border-radius $dur-medium-2 $ease-expressive,
+        box-shadow $dur-medium-1 $ease-standard;
+
+    // Image zoom hook — see _poster.scss for the .poster-img target.
+    &:hover {
+        transform: translateY(-4px);
+        background: var(--surface-alt);
+        border-radius: $radius-2xl;
+        @include elevation(3);
+
+        .poster-img {
+            transform: scale(1.06);
+        }
+    }
+
+    &:focus-visible {
+        @include focus-ring(4px);
+    }
+
+    &:active {
+        transform: translateY(-2px) scale(0.99);
+        transition-duration: $dur-short-2;
+    }
+
+    .info {
+        padding: $space-3 $space-4 $space-4;
+        display: flex;
+        flex-direction: column;
+        gap: $space-1;
+    }
+
+    .title {
+        font-size: $font-size-md;
+        font-weight: $font-weight-semibold;
+        color: var(--text-primary);
+        @include clamp-lines(1);
+    }
+
+    .meta {
+        font-size: $font-size-sm;
+        color: var(--text-muted);
+    }
+}
+
+// ── Continue-watching card (landscape) ────────────────────────────────────
+.cw-card {
+    flex-shrink: 0;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    background: var(--surface);
+    border-radius: $radius-lg;
+    overflow: hidden;
+    border: 1px solid transparent;
+    @include elevation(0);
+    transition:
+        transform $dur-medium-1 $ease-expressive,
+        background-color $dur-short-3 $ease-standard,
+        border-radius $dur-medium-2 $ease-expressive,
+        box-shadow $dur-medium-1 $ease-standard;
+
+    &:hover {
+        transform: translateY(-3px);
+        background: var(--surface-alt);
+        border-radius: $radius-xl;
+        @include elevation(2);
+
+        .cw-thumb-img {
+            transform: scale(1.04);
+        }
+    }
+
+    &:focus-visible {
+        @include focus-ring(4px);
+    }
+
+    &:active {
+        transform: translateY(-1px) scale(0.99);
+    }
+
+    .cw-info {
+        padding: $space-3 $space-3 $space-4;
+        display: flex;
+        flex-direction: column;
+        gap: $space-1;
+    }
+
+    .cw-show-title {
+        font-size: $font-size-md;
+        font-weight: $font-weight-semibold;
+        color: var(--text-primary);
+        @include clamp-lines(1);
+    }
+
+    .cw-ep-label {
+        font-size: $font-size-sm;
+        color: var(--text-muted);
+        @include clamp-lines(1);
+    }
+
+    .cw-ep-title {
+        color: var(--text-muted);
+    }
+}

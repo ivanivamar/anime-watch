@@ -9,7 +9,7 @@ import { LibraryService, type ContinueWatchingItem, type ShowSummary } from './l
     standalone: true,
     imports: [RouterLink, ContinueWatchingRowComponent],
     templateUrl: './library.component.html',
-    styleUrl: './library.component.css',
+    styleUrl: './library.component.scss',
 })
 export class LibraryComponent implements OnInit {
     onPosterError(event: Event): void {

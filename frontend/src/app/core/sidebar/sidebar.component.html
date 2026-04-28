@@ -1,0 +1,63 @@
+@let currentTheme = theme();
+<aside class="sidebar">
+    <ul class="sidebar-nav">
+        <li>
+            <a
+                class="sidebar-item"
+                routerLink="/library"
+                routerLinkActive="is-active"
+                aria-label="Home"
+            >
+                <span class="sidebar-icon material-symbols-outlined" aria-hidden="true">
+                    home
+                </span>
+            </a>
+        </li>
+
+        <li>
+            <button
+                class="sidebar-item"
+                type="button"
+                disabled
+                aria-label="Search (coming soon)"
+                title="Coming soon"
+            >
+                <span class="sidebar-icon material-symbols-outlined" aria-hidden="true">
+                    search
+                </span>
+            </button>
+        </li>
+
+        <li>
+            <button
+                class="sidebar-item"
+                type="button"
+                disabled
+                aria-label="Settings (coming soon)"
+                title="Coming soon"
+            >
+                <span class="sidebar-icon material-symbols-outlined" aria-hidden="true">
+                    settings
+                </span>
+            </button>
+        </li>
+    </ul>
+
+    <ul class="sidebar-nav sidebar-nav-bottom">
+        <li>
+            <button
+                class="sidebar-item"
+                type="button"
+                (click)="toggleTheme()"
+                [attr.aria-label]="
+                    'Switch to ' + (currentTheme === 'dark' ? 'light' : 'dark') + ' theme'
+                "
+                [title]="(currentTheme === 'dark' ? 'Light' : 'Dark') + ' mode'"
+            >
+                <span class="sidebar-icon material-symbols-outlined" aria-hidden="true">
+                    {{ currentTheme === 'dark' ? 'light_mode' : 'dark_mode' }}
+                </span>
+            </button>
+        </li>
+    </ul>
+</aside>

@@ -1,0 +1,54 @@
+@use '../abstracts' as *;
+
+// Loading / error / empty states used across pages.
+
+.state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $space-4;
+    min-height: 50vh;
+    color: var(--text-secondary);
+    font-size: $font-size-md;
+    text-align: center;
+    padding: $space-8 $space-6;
+    animation: state-fade-in $dur-medium-3 $ease-standard-decelerate both;
+
+    &.error {
+        color: var(--color-error);
+    }
+}
+
+@keyframes state-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Subtle skeleton shimmer reusable for any future loading placeholders.
+@keyframes skeleton-shimmer {
+    0% {
+        background-position: -400px 0;
+    }
+    100% {
+        background-position: 400px 0;
+    }
+}
+
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--surface) 0%,
+        var(--surface-alt) 50%,
+        var(--surface) 100%
+    );
+    background-size: 800px 100%;
+    border-radius: $radius-sm;
+    animation: skeleton-shimmer 1.4s $ease-linear infinite;
+}

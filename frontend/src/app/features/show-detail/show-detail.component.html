@@ -29,7 +29,7 @@
                     <p class="show-description">{{ show()!.description }}</p>
                 }
                 @if (resumeEpisode()) {
-                    <a class="continue-btn" [routerLink]="['/watch', resumeEpisode()!.id]">
+                    <a class="btn btn-primary" [routerLink]="['/watch', resumeEpisode()!.id]">
                         ▶&nbsp; Continue S{{ pad(resumeEpisode()!.season) }}E{{
                             pad(resumeEpisode()!.episode)
                         }}
@@ -51,7 +51,7 @@
                             alt=""
                             (error)="onSeasonPosterError($event)"
                         />
-                        <h2 class="season-heading">Season {{ season[0] }}</h2>
+                        <h2 class="section-label">Season {{ season[0] }}</h2>
                     </div>
                     @for (ep of season[1]; track ep.id) {
                         <a class="ep-row" [routerLink]="['/watch', ep.id]">

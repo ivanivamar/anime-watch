@@ -1,0 +1,95 @@
+@use 'variables' as *;
+
+// Truncate text to N lines.
+@mixin clamp-lines($lines: 1) {
+    @if $lines == 1 {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    } @else {
+        display: -webkit-box;
+        -webkit-line-clamp: $lines;
+        line-clamp: $lines;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+// Square box of a given size (icon buttons, thumbnails).
+@mixin square($size) {
+    width: $size;
+    height: $size;
+}
+
+// Layered M3-flavoured elevation. Levels 0–5.
+@mixin elevation($level: 1) {
+    @if $level == 0 {
+        box-shadow: none;
+    } @else if $level == 1 {
+        box-shadow:
+            0 1px 2px rgba(0, 0, 0, 0.18),
+            0 1px 3px 1px rgba(0, 0, 0, 0.12);
+    } @else if $level == 2 {
+        box-shadow:
+            0 1px 2px rgba(0, 0, 0, 0.18),
+            0 2px 6px 2px rgba(0, 0, 0, 0.14);
+    } @else if $level == 3 {
+        box-shadow:
+            0 4px 8px 3px rgba(0, 0, 0, 0.16),
+            0 1px 3px rgba(0, 0, 0, 0.2);
+    } @else if $level == 4 {
+        box-shadow:
+            0 6px 10px 4px rgba(0, 0, 0, 0.18),
+            0 2px 3px rgba(0, 0, 0, 0.22);
+    } @else {
+        box-shadow:
+            0 8px 12px 6px rgba(0, 0, 0, 0.2),
+            0 4px 4px rgba(0, 0, 0, 0.24);
+    }
+}
+
+// Visible focus ring matching the active accent.
+@mixin focus-ring($offset: 2px) {
+    outline: 2px solid var(--accent);
+    outline-offset: $offset;
+}
+
+// Hide content from sighted users while keeping it for assistive tech.
+@mixin sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+// Trims native scrollbars to a thin track that follows the theme.
+@mixin themed-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--outline) transparent;
+}
+
+// Breakpoint helper.
+@mixin breakpoint-up($size) {
+    @if $size == sm {
+        @media (min-width: $bp-sm) {
+            @content;
+        }
+    } @else if $size == md {
+        @media (min-width: $bp-md) {
+            @content;
+        }
+    } @else if $size == lg {
+        @media (min-width: $bp-lg) {
+            @content;
+        }
+    } @else if $size == xl {
+        @media (min-width: $bp-xl) {
+            @content;
+        }
+    }
+}
