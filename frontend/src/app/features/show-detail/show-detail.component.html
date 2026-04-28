@@ -1,0 +1,77 @@
+<div class="show-detail">
+    @if (loading()) {
+        <div class="state">Loading…</div>
+    } @else if (error()) {
+        <div class="state error">
+            <p>{{ error() }}</p>
+            <a class="link" routerLink="/library">← Library</a>
+        </div>
+    } @else if (show()) {
+        <header class="hero">
+            <div class="poster">
+                <span class="poster-initial">{{ show()!.title.charAt(0) }}</span>
+            </div>
+
+            <div class="hero-info">
+                <a class="back-link" routerLink="/library">← Library</a>
+                <h1 class="show-title">{{ show()!.title }}</h1>
+                <p class="show-meta">
+                    {{ show()!.year ?? '—' }} · {{ show()!.episodes.length }}
+                    {{ show()!.episodes.length === 1 ? 'episode' : 'episodes' }}
+                </p>
+                @if (show()!.description) {
+                    <p class="show-description">{{ show()!.description }}</p>
+                }
+                @if (resumeEpisode()) {
+                    <a class="continue-btn" [routerLink]="['/watch', resumeEpisode()!.id]">
+                        ▶&nbsp; Continue S{{ pad(resumeEpisode()!.season) }}E{{
+                            pad(resumeEpisode()!.episode)
+                        }}
+                        @if (resumeEpisode()!.title) {
+                            <span class="continue-title"> — {{ resumeEpisode()!.title }}</span>
+                        }
+                    </a>
+                }
+            </div>
+        </header>
+
+        <section class="episodes">
+            @for (season of seasons(); track season[0]) {
+                <div class="season-block">
+                    <h2 class="season-heading">Season {{ season[0] }}</h2>
+                    @for (ep of season[1]; track ep.id) {
+                        <a class="ep-row" [routerLink]="['/watch', ep.id]">
+                            <div class="ep-thumb">
+                                <span class="ep-thumb-num">{{ pad(ep.episode) }}</span>
+                                @if (ep.completed === 1) {
+                                    <span class="ep-done" title="Watched">✓</span>
+                                }
+                            </div>
+                            <div class="ep-body">
+                                <div class="ep-top">
+                                    <span class="ep-code">
+                                        S{{ pad(ep.season) }}E{{ pad(ep.episode) }}
+                                    </span>
+                                    <span class="ep-title">{{
+                                        ep.title ?? 'Episode ' + ep.episode
+                                    }}</span>
+                                    <span class="ep-duration">{{
+                                        formatDuration(ep.duration_seconds)
+                                    }}</span>
+                                </div>
+                                @if (progressPercent(ep) > 0 && ep.completed !== 1) {
+                                    <div class="ep-progress-track">
+                                        <div
+                                            class="ep-progress-fill"
+                                            [style.width.%]="progressPercent(ep)"
+                                        ></div>
+                                    </div>
+                                }
+                            </div>
+                        </a>
+                    }
+                </div>
+            }
+        </section>
+    }
+</div>

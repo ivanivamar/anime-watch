@@ -1,0 +1,246 @@
+.show-detail {
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+/* ── Hero ─────────────────────────────────────────────────── */
+
+.hero {
+    display: flex;
+    gap: 32px;
+    padding: 32px 24px;
+    background: linear-gradient(to bottom, var(--surface) 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+}
+
+.poster {
+    flex-shrink: 0;
+    width: 140px;
+    aspect-ratio: 2 / 3;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--surface-alt), var(--surface));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+}
+
+.poster-initial {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    user-select: none;
+}
+
+.hero-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.back-link {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    align-self: flex-start;
+}
+
+.back-link:hover {
+    color: var(--text-primary);
+}
+
+.show-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.show-meta {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.show-description {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 4px 0 0;
+    max-width: 600px;
+}
+
+.continue-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 8px;
+    padding: 10px 20px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    align-self: flex-start;
+    transition: opacity 150ms ease;
+}
+
+.continue-btn:hover {
+    opacity: 0.85;
+}
+
+.continue-title {
+    font-weight: 400;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 240px;
+}
+
+/* ── Episode list ─────────────────────────────────────────── */
+
+.episodes {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 860px;
+}
+
+.season-heading {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 12px;
+}
+
+.ep-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition:
+        background 120ms ease,
+        border-color 120ms ease;
+}
+
+.ep-row:hover {
+    background: var(--surface);
+    border-color: var(--border);
+}
+
+.ep-thumb {
+    position: relative;
+    flex-shrink: 0;
+    width: 56px;
+    height: 40px;
+    border-radius: 4px;
+    background: var(--surface-alt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+}
+
+.ep-thumb-num {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.ep-done {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ep-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ep-top {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    min-width: 0;
+}
+
+.ep-code {
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.ep-title {
+    flex: 1;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ep-duration {
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.ep-progress-track {
+    height: 3px;
+    border-radius: 2px;
+    background: var(--border);
+    overflow: hidden;
+}
+
+.ep-progress-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--accent);
+}
+
+/* ── States ───────────────────────────────────────────────── */
+
+.state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 100vh;
+    color: var(--text-muted);
+}
+
+.state.error {
+    color: var(--color-error);
+}
+
+.link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.875rem;
+}
