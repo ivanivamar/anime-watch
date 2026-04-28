@@ -1,0 +1,24 @@
+<section class="cw-row">
+    <h2 class="cw-heading">Continue Watching</h2>
+    <div class="cw-scroll">
+        @for (item of items(); track item.episode_id) {
+            <a class="cw-card" [routerLink]="['/watch', item.episode_id]">
+                <div class="cw-thumb">
+                    <span class="cw-thumb-initial">{{ item.show_title.charAt(0) }}</span>
+                </div>
+                <div class="cw-info">
+                    <p class="cw-show-title">{{ item.show_title }}</p>
+                    <p class="cw-ep-label">
+                        S{{ pad(item.season) }}E{{ pad(item.episode) }}
+                        @if (item.episode_title) {
+                            <span class="cw-ep-title"> — {{ item.episode_title }}</span>
+                        }
+                    </p>
+                    <div class="cw-progress-track">
+                        <div class="cw-progress-fill" [style.width.%]="progressPercent(item)"></div>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+</section>

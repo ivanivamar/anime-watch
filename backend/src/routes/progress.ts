@@ -1,7 +1,11 @@
 import { Router, type Request, type Response } from 'express';
-import { getProgress, upsertProgress } from '../db/progress.js';
+import { getContinueWatching, getProgress, upsertProgress } from '../db/progress.js';
 
 export const progressRouter = Router();
+
+progressRouter.get('/continue', (_req: Request, res: Response) => {
+    res.json(getContinueWatching());
+});
 
 progressRouter.get('/:episodeId', (req: Request, res: Response) => {
     const episodeId = parseInt(req.params['episodeId'] ?? '', 10);

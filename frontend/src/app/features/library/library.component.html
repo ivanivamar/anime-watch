@@ -8,6 +8,9 @@
     } @else if (shows().length === 0) {
         <p class="state">No shows yet. Run <code>npm run scan</code> to add content.</p>
     } @else {
+        @if (continueWatching().length > 0) {
+            <app-continue-watching-row [items]="continueWatching()" />
+        }
         <div class="grid">
             @for (show of shows(); track show.id) {
                 <a class="card" [routerLink]="['/show', show.id]">

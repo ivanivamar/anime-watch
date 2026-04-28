@@ -1,11 +1,13 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LibraryService, type ShowSummary } from './library.service';
+import { forkJoin } from 'rxjs';
+import { ContinueWatchingRowComponent } from './continue-watching-row.component';
+import { LibraryService, type ContinueWatchingItem, type ShowSummary } from './library.service';
 
 @Component({
     selector: 'app-library',
     standalone: true,
-    imports: [RouterLink],
+    imports: [RouterLink, ContinueWatchingRowComponent],
     templateUrl: './library.component.html',
     styleUrl: './library.component.css',
 })
@@ -13,13 +15,18 @@ export class LibraryComponent implements OnInit {
     private readonly library = inject(LibraryService);
 
     readonly shows = signal<ShowSummary[]>([]);
+    readonly continueWatching = signal<ContinueWatchingItem[]>([]);
     readonly loading = signal(true);
     readonly error = signal<string | null>(null);
 
     ngOnInit(): void {
-        this.library.getShows().subscribe({
-            next: (shows) => {
+        forkJoin({
+            shows: this.library.getShows(),
+            continueWatching: this.library.getContinueWatching(),
+        }).subscribe({
+            next: ({ shows, continueWatching }) => {
                 this.shows.set(shows);
+                this.continueWatching.set(continueWatching);
                 this.loading.set(false);
             },
             error: () => {

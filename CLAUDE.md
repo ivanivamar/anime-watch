@@ -208,15 +208,15 @@ Don't ask before:
 
 (Update this section as the project progresses.)
 
-- [ ] Backend scaffold + Express + SQLite + migrations runner
-- [ ] Frontend scaffold + Angular + routing
-- [ ] Streaming endpoint with Range support
-- [ ] Library scanner script
-- [ ] Library page (grid of shows)
-- [ ] Show detail page (episode list)
-- [ ] Watch page with native player + progress tracking
-- [ ] Continue watching row on library page
-- [ ] Auto-play next episode
+- [x] Backend scaffold + Express + SQLite + migrations runner
+- [x] Frontend scaffold + Angular + routing
+- [x] Streaming endpoint with Range support
+- [x] Library scanner script
+- [x] Library page (grid of shows)
+- [x] Show detail page (episode list)
+- [x] Watch page with native player + progress tracking
+- [x] Continue watching row on library page
+- [x] Auto-play next episode
 
 ## Out of scope (for now)
 
